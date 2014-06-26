@@ -123,7 +123,10 @@ angular.module('app', ['ionic'])
 
     victim.properties.color = "red";
     $scope.removePlayers();
-    if (showPlayerAttackRadius) geoJsonAttackDistanceLayer = createGeoJsonAttackDistanceLayer(players).addTo(map);
+    if (showPlayerAttackRadius) {
+      geoJsonAttackDistanceLayer = createGeoJsonAttackDistanceLayer(players);
+      map.addLayer(geoJsonAttackDistanceLayer, true);
+    }
     geoJsonLayer = createGeoJsonLayer(players).addTo(map);
 
     for (var i = 0; i < players.features.length; i++) {
@@ -172,12 +175,17 @@ angular.module('app', ['ionic'])
       $scope.removePlayers();
     }
     players = generateRandomGeoJsonPlayers(map.getBounds(), 10);
-    if (showPlayerAttackRadius) geoJsonAttackDistanceLayer = createGeoJsonAttackDistanceLayer(players).addTo(map);
+    if (showPlayerAttackRadius) {
+      geoJsonAttackDistanceLayer = createGeoJsonAttackDistanceLayer(players);
+      map.addLayer(geoJsonAttackDistanceLayer, true);
+    }
     geoJsonLayer = createGeoJsonLayer(players).addTo(map);
   };
 
   $scope.removePlayers = function() {
-    if (showPlayerAttackRadius) map.removeLayer(geoJsonAttackDistanceLayer);
+    if (showPlayerAttackRadius) {
+      map.removeLayer(geoJsonAttackDistanceLayer);
+    }
     map.removeLayer(geoJsonLayer);
   };
 
