@@ -125,7 +125,7 @@ angular.module('app', ['ionic'])
       return;
     }
 
-    victimLatLng = L.latLng(victim.geometry.coordinates[1], victim.geometry.coordinates[0]);
+    var victimLatLng = L.latLng(victim.geometry.coordinates[1], victim.geometry.coordinates[0]);
 
     victim.properties.color = "red";
     $scope.removePlayers();
@@ -141,6 +141,7 @@ angular.module('app', ['ionic'])
         // console.log(victimLatLng);
         // console.log(players.features[i]);
         // setTimeout(function() {
+        //console.log(victim.properties.name + " attacks " + players.features[i].properties.name);
         plantBomb(victimLatLng, players.features[i].properties.name);
         // }, 500);
       }
