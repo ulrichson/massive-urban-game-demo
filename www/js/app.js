@@ -89,6 +89,12 @@ angular.module('app', ['ionic'])
   function onLocationFound(e) {
     currentLatLng = e.latlng;
     updatePositionMarker(e.latlng);
+    $scope.removePlayers();
+    if (showPlayerAttackRadius) {
+      geoJsonAttackDistanceLayer = createGeoJsonAttackDistanceLayer(players);
+      map.addLayer(geoJsonAttackDistanceLayer, true);
+    }
+    geoJsonLayer = createGeoJsonLayer(players).addTo(map);
   }
 
   function playerMarkerClicked(e) {
